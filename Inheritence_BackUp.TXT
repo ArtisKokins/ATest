@@ -1,0 +1,662 @@
+#include <iostream>
+#include <cstdlib>
+#include <fstream>
+#include <stdlib.h>
+#define N 100
+
+using namespace std;
+
+//------------------------------------------------------------------------------
+class Arachnid {
+public:
+    string name;
+    string habitat;
+    void set_name(string x){name=x;}
+    void set_habitat(string h){habitat=h;}
+};
+
+class Spider: public Arachnid
+{
+public:
+    string venomous;
+    void set_venomous(string vyn){venomous=vyn;}
+};
+
+class Scorpion: public Arachnid
+{
+public:
+    string edible;
+    void set_edible(string eyn){edible=eyn;}
+};
+
+class Tick: public Arachnid
+{
+public:
+    string dust;
+    void set_dust(string dyn){dust=dyn;}
+};
+//------------------------------------------------------------------------------
+void data_input(Spider zirn[], int n, string x, string h, string vyn, Spider sp, Scorpion skor[], string y, string k, string eyn, Scorpion sc, Tick erce[], string z, string l, string dyn, Tick ti);
+void data_output(Spider zirn[], int n, string x, string h, string vyn, Spider sp, Scorpion skor[], string y, string k, string eyn, Scorpion sc, Tick erce[], string z, string l, string dyn, Tick ti);
+void write_txt_file(Spider zirn[], int n, string x, string h, string vyn, Spider sp, Scorpion skor[], string y, string k, string eyn, Scorpion sc, Tick erce[], string z, string l, string dyn, Tick ti);
+void write_bin_file(Spider zirn[], int n, string x, string h, string vyn, Spider sp, Scorpion skor[], string y, string k, string eyn, Scorpion sc, Tick erce[], string z, string l, string dyn, Tick ti);
+void read_txt_file(Spider zirn[], int n, string x, string h, string vyn, Spider sp, Scorpion skor[], string y, string k, string eyn, Scorpion sc, Tick erce[], string z, string l, string dyn, Tick ti);
+void read_bin_file(Spider zirn[], int n, string x, string h, string vyn, Spider sp, Scorpion skor[], string y, string k, string eyn, Scorpion sc, Tick erce[], string z, string l, string dyn, Tick ti);
+
+void data_input_spider(Spider zirn[], int n, string x, string h, string vyn, Spider sp);
+void data_output_spider(Spider zirn[], int n, string x, string h, string vyn, Spider sp);
+void write_txt_spider(Spider zirn[], int n, string x, string h, string vyn, Spider sp);
+void write_bin_spider(Spider zirn[], int n, string x, string h, string vyn, Spider sp);
+void read_txt_spider(Spider zirn[], int n, string x, string h, string vyn, Spider sp);
+void read_bin_spider(Spider zirn[], int n, string x, string h, string vyn, Spider sp);
+
+void data_input_scorpion(Scorpion skor[], int n, string y, string k, string eyn, Scorpion sc);
+void data_output_scorpion(Scorpion skor[], int n, string y, string k, string eyn, Scorpion sc);
+void write_txt_scorpion(Scorpion skor[], int n, string y, string k, string eyn, Scorpion sc);
+void write_bin_scorpion(Scorpion skor[], int n, string y, string k, string eyn, Scorpion sc);
+void read_txt_scorpion(Scorpion skor[], int n, string y, string k, string eyn, Scorpion sc);
+void read_bin_scorpion(Scorpion skor[], int n, string y, string k, string eyn, Scorpion sc);
+
+void data_input_tick(Tick erce[], int n, string z, string l, string dyn, Tick ti);
+void data_output_tick(Tick erce[], int n, string z, string l, string dyn, Tick ti);
+void write_txt_tick(Tick erce[], int n, string z, string l, string dyn, Tick ti);
+void write_bin_tick(Tick erce[], int n, string z, string l, string dyn, Tick ti);
+void read_txt_tick(Tick erce[], int n, string z, string l, string dyn, Tick ti);
+void read_bin_tick(Tick erce[], int n, string z, string l, string dyn, Tick ti);
+
+//------------------------------------------------------------------------------
+int main()
+{
+    system("Color 4"); //Teksta krasa (Sarkana)
+    //Space vietaa apakshsvitra (ABC_DEF)
+
+    Spider zirn[N], zirn2[N], zirn3[N], sp;
+    Scorpion skor[N], skor2[N], skor3[N], sc;
+    Tick erce[N], erce2[N], erce3[N], ti;
+    int n, choice;
+    string x, y, z, h, k, l;
+    string vyn, eyn, dyn;
+    cout<<"Input number of arachnids: ";
+    cin>>n;
+
+    do
+    {
+    system ("cls");
+
+    cout<<"\nAuthor: Artis Kokins"<<endl;
+    cout<<"Arachnids"<<endl;
+    cout<<"Date: 10.06.2020."<<endl;
+    cout<<"Version 5.0"<<endl<<endl;
+
+    cout<<"\t\t                 __"<<endl;
+    cout<<"\t\t  //  \\\\      | /  \\ |"<<endl;
+    cout<<"\t\t _\\\\()//_    \\_\\\\  //_/"<<endl;
+    cout<<"\t\t/ //  \\\\ \\    .'/()\\'."<<endl;
+    cout<<"\t\t | \\__/ |      \\\\  //"<<endl;
+
+    cout<<"\n\t\t1. Arachnid input in array";
+    cout<<"\n\t\t2. Arachnid output from array";
+    cout<<"\n\t\t3. Write arachnids to text file";
+    cout<<"\n\t\t4. Write arachnids to bin file";
+    cout<<"\n\t\t5. Read arachnids from text file";
+    cout<<"\n\t\t6. Read arachnids from bin file";
+    cout<<"\n\t\t0. Exit!";
+    cout<<"\n\t\tChoose action: ";
+    cin>>choice;
+
+    switch(choice)
+    {
+    case 1: data_input(zirn, n, x, h, vyn, sp, skor, y, k, eyn, sc, erce, z, l, dyn, ti);
+            system("Pause>>nul");
+            break;
+    case 2: data_output(zirn, n, x, h, vyn, sp, skor, y, k, eyn, sc, erce, z, l, dyn, ti);
+            system("Pause>>nul");
+            break;
+    case 3: write_txt_file(zirn, n, x, h, vyn, sp, skor, y, k, eyn, sc, erce, z, l, dyn, ti);
+            system("Pause>>nul");
+            break;
+    case 4: write_bin_file(zirn, n, x, h, vyn, sp, skor, y, k, eyn, sc, erce, z, l, dyn, ti);
+            system("Pause>>nul");
+            break;
+    case 5: read_txt_file(zirn, n, x, h, vyn, sp, skor, y, k, eyn, sc, erce, z, l, dyn, ti);
+            system("Pause>>nul");
+            break;
+    case 6: read_bin_file(zirn, n, x, h, vyn, sp, skor, y, k, eyn, sc, erce, z, l, dyn, ti);
+            system("Pause>>nul");
+            break;
+    case 0: cout<<"\nExit!\nThank you for using this program!"<<endl;
+            break;
+    default: cout<<"\nIncorrect input!";
+    }
+
+    }while(choice!=0);
+
+    system("Pause>>nul");
+    return 0;
+}
+//------------------------------------------------------------------------------
+void data_input(Spider zirn[], int n, string x, string h, string vyn, Spider sp, Scorpion skor[], string y, string k, string eyn, Scorpion sc, Tick erce[], string z, string l, string dyn, Tick ti)
+{
+    int choice;
+    do
+    {
+    system ("cls");
+
+    cout<<"\nAuthor: Artis Kokins"<<endl;
+    cout<<"Arachnids"<<endl;
+    cout<<"Date: 10.06.2020."<<endl;
+    cout<<"Version 5.0"<<endl<<endl;
+
+    cout<<"\t\t                 __"<<endl;
+    cout<<"\t\t  //  \\\\      | /  \\ |"<<endl;
+    cout<<"\t\t _\\\\()//_    \\_\\\\  //_/"<<endl;
+    cout<<"\t\t/ //  \\\\ \\    .'/()\\'."<<endl;
+    cout<<"\t\t | \\__/ |      \\\\  //"<<endl;
+
+    cout<<"\n\t\t1. Input Spiders";
+    cout<<"\n\t\t2. Input Scorpions";
+    cout<<"\n\t\t3. Input Ticks";
+    cout<<"\n\t\t0. Exit!";
+    cout<<"\n\t\tChoose action: ";
+    cin>>choice;
+
+    switch(choice)
+    {
+    case 1: data_input_spider(zirn, n, x, h, vyn, sp);
+            system("Pause>>nul");
+            break;
+    case 2: data_input_scorpion(skor, n, y, k, eyn, sc);
+            system("Pause>>nul");
+            break;
+    case 3: data_input_tick(erce, n, z, l, dyn, ti);
+            system("Pause>>nul");
+            break;
+    case 0: cout<<"\nExit!"<<endl;
+            break;
+    default: cout<<"\nIncorrect input!";
+    }
+
+    }while(choice!=0);
+
+}
+void data_output(Spider zirn[], int n, string x, string h, string vyn, Spider sp, Scorpion skor[], string y, string k, string eyn, Scorpion sc, Tick erce[], string z, string l, string dyn, Tick ti)
+{
+    int choice;
+    do
+    {
+    system ("cls");
+
+    cout<<"\nAuthor: Artis Kokins"<<endl;
+    cout<<"Arachnids"<<endl;
+    cout<<"Date: 10.06.2020."<<endl;
+    cout<<"Version 5.0"<<endl<<endl;
+
+    cout<<"\t\t                 __"<<endl;
+    cout<<"\t\t  //  \\\\      | /  \\ |"<<endl;
+    cout<<"\t\t _\\\\()//_    \\_\\\\  //_/"<<endl;
+    cout<<"\t\t/ //  \\\\ \\    .'/()\\'."<<endl;
+    cout<<"\t\t | \\__/ |      \\\\  //"<<endl;
+
+    cout<<"\n\t\t1. Output Spiders";
+    cout<<"\n\t\t2. Output Scorpions";
+    cout<<"\n\t\t3. Output Ticks";
+    cout<<"\n\t\t0. Exit!";
+    cout<<"\n\t\tChoose action: ";
+    cin>>choice;
+
+    switch(choice)
+    {
+    case 1: data_output_spider(zirn, n, x, h, vyn, sp);
+            system("Pause>>nul");
+            break;
+    case 2: data_output_scorpion(skor, n, y, k, eyn, sc);
+            system("Pause>>nul");
+            break;
+    case 3: data_output_tick(erce, n, z, l, dyn, ti);
+            system("Pause>>nul");
+            break;
+    case 0: cout<<"\nExit!"<<endl;
+            break;
+    default: cout<<"\nIncorrect input!";
+    }
+
+    }while(choice!=0);
+
+}
+void write_txt_file(Spider zirn[], int n, string x, string h, string vyn, Spider sp, Scorpion skor[], string y, string k, string eyn, Scorpion sc, Tick erce[], string z, string l, string dyn, Tick ti)
+{
+    int choice;
+    do
+    {
+    system ("cls");
+
+    cout<<"\nAuthor: Artis Kokins"<<endl;
+    cout<<"Arachnids"<<endl;
+    cout<<"Date: 10.06.2020."<<endl;
+    cout<<"Version 5.0"<<endl<<endl;
+
+    cout<<"\t\t                 __"<<endl;
+    cout<<"\t\t  //  \\\\      | /  \\ |"<<endl;
+    cout<<"\t\t _\\\\()//_    \\_\\\\  //_/"<<endl;
+    cout<<"\t\t/ //  \\\\ \\    .'/()\\'."<<endl;
+    cout<<"\t\t | \\__/ |      \\\\  //"<<endl;
+
+    cout<<"\n\t\t1. Write txt Spiders";
+    cout<<"\n\t\t2. Write txt Scorpions";
+    cout<<"\n\t\t3. Write txt Ticks";
+    cout<<"\n\t\t0. Exit!";
+    cout<<"\n\t\tChoose action: ";
+    cin>>choice;
+
+    switch(choice)
+    {
+    case 1: write_txt_spider(zirn, n, x, h, vyn, sp);
+            system("Pause>>nul");
+            break;
+    case 2: write_txt_scorpion(skor, n, y, k, eyn, sc);
+            system("Pause>>nul");
+            break;
+    case 3: write_txt_tick(erce, n, z, l, dyn, ti);
+            system("Pause>>nul");
+            break;
+    case 0: cout<<"\nExit!"<<endl;
+            break;
+    default: cout<<"\nIncorrect input!";
+    }
+
+    }while(choice!=0);
+
+}
+void write_bin_file(Spider zirn[], int n, string x, string h, string vyn, Spider sp, Scorpion skor[], string y, string k, string eyn, Scorpion sc, Tick erce[], string z, string l, string dyn, Tick ti)
+{
+    int choice;
+    do
+    {
+    system ("cls");
+
+    cout<<"\nAuthor: Artis Kokins"<<endl;
+    cout<<"Arachnids"<<endl;
+    cout<<"Date: 10.06.2020."<<endl;
+    cout<<"Version 5.0"<<endl<<endl;
+
+    cout<<"\t\t                 __"<<endl;
+    cout<<"\t\t  //  \\\\      | /  \\ |"<<endl;
+    cout<<"\t\t _\\\\()//_    \\_\\\\  //_/"<<endl;
+    cout<<"\t\t/ //  \\\\ \\    .'/()\\'."<<endl;
+    cout<<"\t\t | \\__/ |      \\\\  //"<<endl;
+
+    cout<<"\n\t\t1. Write bin Spiders";
+    cout<<"\n\t\t2. Write bin Scorpions";
+    cout<<"\n\t\t3. Write bin Ticks";
+    cout<<"\n\t\t0. Exit!";
+    cout<<"\n\t\tChoose action: ";
+    cin>>choice;
+
+    switch(choice)
+    {
+    case 1: write_bin_spider(zirn, n, x, h, vyn, sp);
+            system("Pause>>nul");
+            break;
+    case 2: write_bin_scorpion(skor, n, y, k, eyn, sc);
+            system("Pause>>nul");
+            break;
+    case 3: write_bin_tick(erce, n, z, l, dyn, ti);
+            system("Pause>>nul");
+            break;
+    case 0: cout<<"\nExit!"<<endl;
+            break;
+    default: cout<<"\nIncorrect input!";
+    }
+
+    }while(choice!=0);
+
+}
+void read_txt_file(Spider zirn2[], int n, string x, string h, string vyn, Spider sp, Scorpion skor2[], string y, string k, string eyn, Scorpion sc, Tick erce2[], string z, string l, string dyn, Tick ti)
+{
+    int choice;
+    do
+    {
+    system ("cls");
+
+   cout<<"\nAuthor: Artis Kokins"<<endl;
+    cout<<"Arachnids"<<endl;
+    cout<<"Date: 10.06.2020."<<endl;
+    cout<<"Version 5.0"<<endl<<endl;
+
+    cout<<"\t\t                 __"<<endl;
+    cout<<"\t\t  //  \\\\      | /  \\ |"<<endl;
+    cout<<"\t\t _\\\\()//_    \\_\\\\  //_/"<<endl;
+    cout<<"\t\t/ //  \\\\ \\    .'/()\\'."<<endl;
+    cout<<"\t\t | \\__/ |      \\\\  //"<<endl;
+
+    cout<<"\n\t\t1. Read txt Spiders";
+    cout<<"\n\t\t2. Read txt Scorpions";
+    cout<<"\n\t\t3. Read txt Ticks";
+    cout<<"\n\t\t0. Exit!";
+    cout<<"\n\t\tChoose action: ";
+    cin>>choice;
+
+    switch(choice)
+    {
+    case 1: read_txt_spider(zirn2, n, x, h, vyn, sp);
+            data_output_spider(zirn2, n, x, h, vyn, sp);
+            system("Pause>>nul");
+            break;
+    case 2: read_txt_scorpion(skor2, n, y, k, eyn, sc);
+            data_output_scorpion(skor2, n, y, k, eyn, sc);
+            system("Pause>>nul");
+            break;
+    case 3: read_txt_tick(erce2, n, z, l, dyn, ti);
+            data_output_tick(erce2, n, z, l, dyn, ti);
+            system("Pause>>nul");
+            break;
+    case 0: cout<<"\nExit!"<<endl;
+            break;
+    default: cout<<"\nIncorrect input!";
+    }
+
+    }while(choice!=0);
+
+}
+void read_bin_file(Spider zirn3[], int n, string x, string h, string vyn, Spider sp, Scorpion skor3[], string y, string k, string eyn, Scorpion sc, Tick erce3[], string z, string l, string dyn, Tick ti)
+{
+    int choice;
+    do
+    {
+    system ("cls");
+
+    cout<<"\nAuthor: Artis Kokins"<<endl;
+    cout<<"Arachnids"<<endl;
+    cout<<"Date: 10.06.2020."<<endl;
+    cout<<"Version 5.0"<<endl<<endl;
+
+    cout<<"\t\t                 __"<<endl;
+    cout<<"\t\t  //  \\\\      | /  \\ |"<<endl;
+    cout<<"\t\t _\\\\()//_    \\_\\\\  //_/"<<endl;
+    cout<<"\t\t/ //  \\\\ \\    .'/()\\'."<<endl;
+    cout<<"\t\t | \\__/ |      \\\\  //"<<endl;
+
+    cout<<"\n\t\t1. Read bin Spiders";
+    cout<<"\n\t\t2. Read bin Scorpions";
+    cout<<"\n\t\t3. Read bin Ticks";
+    cout<<"\n\t\t0. Exit!";
+    cout<<"\n\t\tChoose action: ";
+    cin>>choice;
+
+    switch(choice)
+    {
+    case 1: read_bin_spider(zirn3, n, x, h, vyn, sp);
+            data_output_spider(zirn3, n, x, h, vyn, sp);
+            system("Pause>>nul");
+            break;
+    case 2: read_bin_scorpion(skor3, n, y, k, eyn, sc);
+            data_output_scorpion(skor3, n, y, k, eyn, sc);
+            system("Pause>>nul");
+            break;
+    case 3: read_bin_tick(erce3, n, z, l, dyn, ti);
+            data_output_tick(erce3, n, z, l, dyn, ti);
+            system("Pause>>nul");
+            break;
+    case 0: cout<<"\nExit!"<<endl;
+            break;
+    default: cout<<"\nIncorrect input!";
+    }
+
+    }while(choice!=0);
+
+}
+//-------------------------------------------------------------------------
+void data_input_spider(Spider zirn[], int n, string x, string h, string vyn, Spider sp)
+{
+    int i;
+    cout<<"(instead of Space, use _ )"<<endl;
+    for(i=0;i<n;i++){
+    cout<<"\nName: ";
+    cin>>x;
+    sp.set_name(x);
+    zirn[i].name=x;
+    cout<<"\nHabitat: ";
+    cin>>h;
+    sp.set_habitat(h);
+    zirn[i].habitat=h;
+    cout<<"\nVenomous?(yes or no): ";
+    cin>>vyn;
+    if(vyn=="yes"||vyn=="no"||vyn=="Yes"||vyn=="No"||vyn=="YES"||vyn=="NO"){sp.set_venomous(vyn); zirn[i].venomous=vyn;}
+    else cout<<"Input error!";
+    }
+}
+void data_output_spider(Spider zirn[], int n, string x, string h, string vyn, Spider sp)
+{
+    int i;
+    for(i=0;i<n;i++){
+    cout<<"\nSpider's "<<i+1<<" name: "<<zirn[i].name;
+    cout<<"\nSpider's "<<i+1<<" habitat: "<<zirn[i].habitat;
+    cout<<"\nIs spider "<<i+1<<" venomous?: "<<zirn[i].venomous;
+    cout<<endl;
+    }
+}
+void write_txt_spider(Spider zirn[], int n, string x, string h, string vyn, Spider sp)
+{
+    cout<<"\ntxt file OK";
+    int i;
+    ofstream f1;
+    f1.open("Arachnid_Spider.txt");
+    if(f1){
+        for(i=0;i<n;i++){
+        f1<<zirn[i].name<<endl;
+        f1<<zirn[i].habitat<<endl;
+        f1<<zirn[i].venomous<<endl;
+        if(i<n-1) f1<<"\n\n";
+        }//for
+    }//if
+    f1.close();
+}
+void write_bin_spider(Spider zirn[], int n, string x, string h, string vyn, Spider sp)
+{
+    cout<<"\nbin file OK";
+    int i;
+    ofstream f1;
+    f1.open("Arachnid_Spider.bin", ios::binary);
+    if (f1){
+        for(i=0;i<n;i++){
+        f1.write((char*)&zirn[i], sizeof(Spider));
+        }//for
+    }//if
+    f1.close();
+}
+void read_txt_spider(Spider zirn[], int n, string x, string h, string vyn, Spider sp)
+{
+    int i;
+    ifstream f1;
+    f1.open("Arachnid_Spider.txt");
+    if (f1){
+        for(i=0;i<n;i++){
+        f1>>zirn[i].name;
+        f1>>zirn[i].habitat;
+        f1>>zirn[i].venomous;
+        }//for
+    }//if
+    f1.close();
+}
+void read_bin_spider(Spider zirn[], int n, string x, string h, string vyn, Spider sp)
+{
+    int i;
+    ifstream f1;
+    f1.open("Arachnid_Spider.bin", ios::binary);
+    if (f1){
+        for(i=0;i<n;i++){
+        f1.read((char*)&zirn[i], sizeof(Spider));
+        }//for
+    }//if
+    f1.close();
+}
+//-------------------------------------------------------------------------------
+void data_input_scorpion(Scorpion skor[], int n, string y, string k, string eyn, Scorpion sc)
+{
+    int i;
+    cout<<"(instead of Space, use _ )"<<endl;
+    for(i=0;i<n;i++){
+    cout<<"\nName: ";
+    cin>>y;
+    sc.set_name(y);
+    skor[i].name=y;
+    cout<<"\nHabitat: ";
+    cin>>k;
+    sc.set_habitat(k);
+    skor[i].habitat=k;
+    cout<<"\nEdible?(yes or no): ";
+    cin>>eyn;
+    if(eyn=="yes"||eyn=="no"||eyn=="Yes"||eyn=="No"||eyn=="YES"||eyn=="NO"){sc.set_edible(eyn); skor[i].edible=eyn;}
+    else cout<<"Input error!";
+    }
+}
+void data_output_scorpion(Scorpion skor[], int n, string y, string k, string eyn, Scorpion sc)
+{
+    int i;
+    for(i=0;i<n;i++){
+    cout<<"\nScorpion's "<<i+1<<" name: "<<skor[i].name;
+    cout<<"\nScorpion's "<<i+1<<" habitat: "<<skor[i].habitat;
+    cout<<"\nIs scorpion "<<i+1<<" edible?: "<<skor[i].edible;
+    cout<<endl;
+    }
+}
+void write_txt_scorpion(Scorpion skor[], int n, string y, string k, string eyn, Scorpion sc)
+{
+    cout<<"\ntxt file OK";
+    int i;
+    ofstream f1;
+    f1.open("Arachnid_Scorpion.txt");
+    if(f1){
+        for(i=0;i<n;i++){
+        f1<<skor[i].name<<endl;
+        f1<<skor[i].habitat<<endl;
+        f1<<skor[i].edible<<endl;
+        if(i<n-1) f1<<"\n\n";
+        }//for
+    }//if
+    f1.close();
+}
+void write_bin_scorpion(Scorpion skor[], int n, string y, string k, string eyn, Scorpion sc)
+{
+    cout<<"\nbin file OK";
+    int i;
+    ofstream f1;
+    f1.open("Arachnid_Scorpion.bin", ios::binary);
+    if (f1){
+        for(i=0;i<n;i++){
+        f1.write((char*)&skor[i], sizeof(Scorpion));
+        }//for
+    }//if
+    f1.close();
+}
+void read_txt_scorpion(Scorpion skor[], int n, string y, string k, string eyn, Scorpion sc)
+{
+    int i;
+    ifstream f1;
+    f1.open("Arachnid_Scorpion.txt");
+    if (f1){
+        for(i=0;i<n;i++){
+        f1>>skor[i].name;
+        f1>>skor[i].habitat;
+        f1>>skor[i].edible;
+        }//for
+    }//if
+    f1.close();
+}
+void read_bin_scorpion(Scorpion skor[], int n, string y, string k, string eyn, Scorpion sc)
+{
+    int i;
+    ifstream f1;
+    f1.open("Arachnid_Scorpion.bin", ios::binary);
+    if (f1){
+        for(i=0;i<n;i++){
+        f1.read((char*)&skor[i], sizeof(Scorpion));
+        }//for
+    }//if
+    f1.close();
+}
+//----------------------------------------------------------------------------------
+void data_input_tick(Tick erce[], int n, string z, string l, string dyn, Tick ti)
+{
+    int i;
+    cout<<"(instead of Space, use _ )"<<endl;
+    for(i=0;i<n;i++){
+    cout<<"\nName: ";
+    cin>>z;
+    ti.set_name(z);
+    erce[i].name=z;
+    cout<<"\nHabitat: ";
+    cin>>l;
+    ti.set_habitat(l);
+    erce[i].habitat=l;
+    cout<<"\nDust mite?(yes or no): ";
+    cin>>dyn;
+    if(dyn=="yes"||dyn=="no"||dyn=="Yes"||dyn=="No"||dyn=="YES"||dyn=="NO"){ti.set_dust(dyn); erce[i].dust=dyn;}
+    else cout<<"Input error!";
+    }
+}
+void data_output_tick(Tick erce[], int n, string z, string l, string dyn, Tick ti)
+{
+    int i;
+    for(i=0;i<n;i++){
+    cout<<"\nTick's "<<i+1<<" name: "<<erce[i].name;
+    cout<<"\nTick's "<<i+1<<" habitat: "<<erce[i].habitat;
+    cout<<"\nIs tick "<<i+1<<" dust mite?: "<<erce[i].dust;
+    cout<<endl;
+    }
+}
+void write_txt_tick(Tick erce[], int n, string z, string l, string dyn, Tick ti)
+{
+    cout<<"\ntxt file OK";
+    int i;
+    ofstream f1;
+    f1.open("Arachnid_Tick.txt");
+    if(f1){
+        for(i=0;i<n;i++){
+        f1<<erce[i].name<<endl;
+        f1<<erce[i].habitat<<endl;
+        f1<<erce[i].dust<<endl;
+        if(i<n-1) f1<<"\n\n";
+        }//for
+    }//if
+    f1.close();
+}
+void write_bin_tick(Tick erce[], int n, string z, string l, string dyn, Tick ti)
+{
+    cout<<"\nbin file OK";
+    int i;
+    ofstream f1;
+    f1.open("Arachnid_Tick.bin", ios::binary);
+    if (f1){
+        for(i=0;i<n;i++){
+        f1.write((char*)&erce[i], sizeof(Tick));
+        }//for
+    }//if
+    f1.close();
+}
+void read_txt_tick(Tick erce[], int n, string z, string l, string dyn, Tick ti)
+{
+    int i;
+    ifstream f1;
+    f1.open("Arachnid_Tick.txt");
+    if (f1){
+        for(i=0;i<n;i++){
+        f1>>erce[i].name;
+        f1>>erce[i].habitat;
+        f1>>erce[i].dust;
+        }//for
+    }//if
+    f1.close();
+}
+void read_bin_tick(Tick erce[], int n, string z, string l, string dyn, Tick ti)
+{
+    int i;
+    ifstream f1;
+    f1.open("Arachnid_Tick.bin", ios::binary);
+    if (f1){
+        for(i=0;i<n;i++){
+        f1.read((char*)&erce[i], sizeof(Tick));
+        }//for
+    }//if
+    f1.close();
+}
