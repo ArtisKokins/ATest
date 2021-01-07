@@ -1,0 +1,13 @@
+Uzdevumi:
+1. Sastādīt biežuma tabulas dotajiem atribūtiem
+2. Aprēķināt Chi Square dotajiem atribūtiem
+3. Noteikt lielāko Chi Square rezultātu
+4. Izveidot lēmumu koku atribūtam, kura Chi Square ir lielākais
+5. Ja lēmumu koka pēdējā līmenī ir atribūts, sastādīt biežuma tabulu, izmantojot tabulas ierakstus, kura dotā atribūta klases nav vienādas
+6. Atkārtot 2., 3., 4. un 5. uzdevumu līdz lēmumu koka pēdējā līmenī ir tikai klases
+
+Uzdevumi:
+1. Sastādīt biežuma tabulas
+2. Aprēķināt Chi Square
+3. Sastādīt lēmumu koku
+4. Atkārtot iepriekšējos uzdevumus līdz lēmumu koks ir pabeigts
